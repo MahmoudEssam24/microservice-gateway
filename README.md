@@ -15,7 +15,7 @@ For building and running the application you need:
 
 To build your app and install dependencies, you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
 
-Make sure that the `core` (https://gitlab.com/sample-microservices-project/core) jar is built.
+Make sure that the `core` (https://github.com/MahmoudEssam24/microservice-core) jar is built.
 
 In the core project directory
 ```shell
