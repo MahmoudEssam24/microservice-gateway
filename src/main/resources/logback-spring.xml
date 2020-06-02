@@ -1,0 +1,39 @@
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <!-- ##Handling logs according to Profile used## -->
+    <springProfile name="dev">
+        <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+            <destination>localhost:5044</destination>
+            <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+                <providers>
+                    <timestamp/>
+                    <logLevel/>
+                    <loggerName/>
+                    <threadName/>
+                    <stackTrace/>
+                    <nestedField>
+                        <fieldName>Service</fieldName>
+                        <providers>
+                            <pattern>
+                                <pattern>
+                                    {
+                                        "traceId": "%mdc{traceId}",
+                                        "spanId": "%mdc{spanId}",
+                                        "appName": "service-gateway",
+                                        "message": "#tryJson{%message}"
+                                    }
+                                </pattern>
+                            </pattern>
+                        </providers>
+                    </nestedField>
+                </providers>
+            </encoder>
+        </appender>
+        <root level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </root>
+        <logger name="sa.com.me.gateway" level="INFO" additivity="false">
+            <appender-ref ref="logstash"/>
+        </logger>
+    </springProfile>
+</configuration>

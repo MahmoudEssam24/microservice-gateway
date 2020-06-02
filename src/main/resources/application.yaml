@@ -1,0 +1,9 @@
+ribbon:
+  ConnectTimeout: 60000
+  ReadTimeout: 55000
+
+zuul.sensitiveHeaders:
+zuul:
+  ribbon:
+    eager-load:
+      enabled: true
